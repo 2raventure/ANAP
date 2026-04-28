@@ -1,10 +1,10 @@
 
 <style>
   :root {
-    --anap-blue: #003189;
-    --anap-blue-light: #e8edf8;
-    --anap-blue-mid: #5a7bc5;
-    --anap-green: #00853f;
+    --anap-red: #d80946;
+    --anap-red-light: #fdf3f6;
+    --anap-red-mid: #a59e9e;
+    --anap-black: #262626;
     --anap-green-light: #e6f4ec;
     --anap-orange: #e85a00;
     --anap-orange-light: #fdf0e8;
@@ -17,13 +17,13 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   .pdme-wrap {
-    font-family: 'Trebuchet MS', 'Calibri', sans-serif;
+    font-family: 'Raleway', 'Calibri', sans-serif;
     color: var(--anap-text);
     padding: 0 0 2rem;
   }
 
   .pdme-header {
-    background: var(--anap-blue);
+    background: var(--anap-red);
     padding: 1.5rem 1.75rem 1.25rem;
     border-radius: var(--border-radius-lg, 12px) var(--border-radius-lg, 12px) 0 0;
     margin-bottom: 0;
@@ -38,7 +38,7 @@
 
   .anap-badge {
     background: white;
-    color: var(--anap-blue);
+    color: var(--anap-red);
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -63,8 +63,8 @@
 
   .progress-bar-wrap {
     background: var(--anap-gray);
-    border-left: 3px solid var(--anap-blue);
-    border-right: 3px solid var(--anap-blue);
+    border-left: 3px solid var(--anap-red);
+    border-right: 3px solid var(--anap-red);
     padding: 0.9rem 1.75rem;
     display: flex;
     align-items: center;
@@ -88,7 +88,7 @@
 
   .progress-fill {
     height: 100%;
-    background: var(--anap-blue);
+    background: var(--anap-red);
     border-radius: 4px;
     transition: width 0.4s ease;
     width: 0%;
@@ -97,14 +97,14 @@
   .progress-count {
     font-size: 14px;
     font-weight: 700;
-    color: var(--anap-blue);
+    color: var(--anap-red);
     min-width: 40px;
     text-align: right;
   }
 
   .sections-list {
-    border-left: 3px solid var(--anap-blue);
-    border-right: 3px solid var(--anap-blue);
+    border-left: 3px solid var(--anap-red);
+    border-right: 3px solid var(--anap-red);
   }
 
   .section-item {
@@ -130,8 +130,8 @@
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    background: var(--anap-blue-light);
-    color: var(--anap-blue);
+    background: var(--anap-red-light);
+    color: var(--anap-red);
     font-size: 12px;
     font-weight: 700;
     display: flex;
@@ -170,7 +170,7 @@
   .section-toggle {
     flex-shrink: 0;
     font-size: 13px;
-    color: var(--anap-blue-mid);
+    color: var(--anap-red-mid);
     margin-top: 4px;
     transition: transform 0.2s;
   }
@@ -217,7 +217,7 @@
   }
 
   .check-item:hover {
-    border-color: var(--anap-blue-mid);
+    border-color: var(--anap-red-mid);
   }
 
   .check-item.checked {
@@ -265,8 +265,8 @@
   .resources-block {
     margin-top: 0.85rem;
     padding: 0.75rem 1rem;
-    background: var(--anap-blue-light);
-    border-left: 3px solid var(--anap-blue);
+    background: var(--anap-red-light);
+    border-left: 3px solid var(--anap-red);
     border-radius: 0 6px 6px 0;
   }
 
@@ -279,7 +279,7 @@
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--anap-blue);
+    color: var(--anap-red);
     margin-bottom: 6px;
   }
 
@@ -288,7 +288,7 @@
     align-items: flex-start;
     gap: 6px;
     font-size: 12.5px;
-    color: var(--anap-blue);
+    color: var(--anap-red);
     text-decoration: none;
     line-height: 1.4;
     padding: 3px 0;
@@ -303,7 +303,7 @@
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background: var(--anap-blue);
+    background: var(--anap-red);
     margin-top: 6px;
   }
 
@@ -326,7 +326,7 @@
 
   .footer-panel {
     background: var(--anap-gray);
-    border: 3px solid var(--anap-blue);
+    border: 3px solid var(--anap-red);
     border-top: none;
     border-radius: 0 0 var(--border-radius-lg, 12px) var(--border-radius-lg, 12px);
     padding: 1.25rem 1.75rem;
@@ -335,7 +335,7 @@
   .footer-title {
     font-size: 13px;
     font-weight: 700;
-    color: var(--anap-blue);
+    color: var(--anap-red);
     letter-spacing: 0.04em;
     text-transform: uppercase;
     margin-bottom: 0.75rem;
@@ -358,7 +358,7 @@
   }
 
   .footer-res-card:hover {
-    border-color: var(--anap-blue);
+    border-color: var(--anap-red);
   }
 
   .frc-org {
@@ -366,7 +366,7 @@
     font-weight: 700;
     letter-spacing: 0.07em;
     text-transform: uppercase;
-    color: var(--anap-blue-mid);
+    color: var(--anap-red-mid);
     margin-bottom: 3px;
   }
 
@@ -382,9 +382,9 @@
     font-size: 12px;
     font-weight: 700;
     background: transparent;
-    border: 1.5px solid var(--anap-blue);
+    border: 1.5px solid var(--anap-red);
     border-radius: 6px;
-    color: var(--anap-blue);
+    color: var(--anap-red);
     cursor: pointer;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -392,7 +392,7 @@
   }
 
   .reset-btn:hover {
-    background: var(--anap-blue-light);
+    background: var(--anap-red-light);
   }
 
   .congrats-banner {
@@ -403,8 +403,8 @@
     font-size: 14px;
     font-weight: 700;
     text-align: center;
-    border-left: 3px solid var(--anap-blue);
-    border-right: 3px solid var(--anap-blue);
+    border-left: 3px solid var(--anap-red);
+    border-right: 3px solid var(--anap-red);
   }
 
   .congrats-banner.show {
@@ -475,7 +475,7 @@ const SECTIONS = [
     num: 2,
     title: "Avoir un accord clair de la direction",
     sub: "Direction informée, objectif validé",
-    desc: "La démarche doit être soutenue par la direction. Sans portage clair, le sujet reste secondaire.",
+    desc: "La démarche doit être soutenue par la direction. Le message peut être simple : améliorer l’accès au travail, renforcer l’attractivité et mieux organiser les déplacements.",
     checks: ["Direction informée et engagée", "Objectif général validé"],
     resources: [
       { label: "ANAP — Pourquoi se lancer dans un plan de mobilité", url: "https://anap.fr/s/" },
@@ -486,7 +486,7 @@ const SECTIONS = [
     num: 3,
     title: "Définir le bon périmètre",
     sub: "Sites, salariés ciblés, priorités",
-    desc: "Le PDME peut concerner un site, plusieurs établissements, un groupement ou une organisation multi-sites. Mieux vaut commencer avec un périmètre réaliste.",
+    desc: "Le PDME peut concerner un site, plusieurs établissements, un groupement ou une organisation multi-sites. Il est plus facile de commmencer avec un périmètre restreint et d'étendre le champ d'action dans un second temps avec les enseignements du 1er projet.",
     checks: ["Site(s) concerné(s) défini(s)", "Salariés ciblés identifiés", "Priorités connues"],
     resources: [
       { label: "Déclic Mobilités — Starter Pack", url: "https://starter-pack.declic-mobilites.org/" }
@@ -515,7 +515,7 @@ const SECTIONS = [
   },
   {
     num: 6,
-    title: "Prendre contact avec l'AOM ou la collectivité",
+    title: "Prendre contact avec l'autorité organisatrice de mobilité (AOM) ou la collectivité",
     sub: "AOM identifiée, contact réalisé, dispositifs recensés",
     desc: "L'AOM peut proposer : accompagnement méthodologique, diagnostic, plateforme covoiturage, données transport, services vélo, appels à projets. Cet appui est parfois gratuit ou cofinancé.",
     checks: ["AOM identifiée", "Premier contact réalisé", "Dispositifs locaux recensés"],
@@ -529,7 +529,7 @@ const SECTIONS = [
     num: 7,
     title: "Regarder autour de soi",
     sub: "Voisins repérés, mutualisations identifiées",
-    desc: "Autres établissements de santé, EHPAD, entreprises, mairie, zone d'activité, établissements scolaires : une démarche commune peut être plus efficace.",
+    desc: "Autres établissements de santé, EHPAD, entreprises de proximité, zone d'activités, mairie, zone d'activité, établissements scolaires...: une démarche commune peut être plus efficace.",
     checks: ["Voisins stratégiques repérés", "Opportunités de mutualisation identifiées"],
     resources: [
       { label: "Déclic Mobilités — Starter Pack", url: "https://starter-pack.declic-mobilites.org/" }
@@ -539,7 +539,7 @@ const SECTIONS = [
     num: 8,
     title: "Rassembler les données déjà disponibles",
     sub: "Données existantes repérées, sources internes identifiées",
-    desc: "Avant toute enquête, l'établissement possède souvent des informations utiles : horaires, effectifs, adresses anonymisées, tension parking, flotte, remboursements transport.",
+    desc: "Avant toute enquête, les informations utiles sont déjà en partie disponibles et réduisent les enquêtes: horaires de travail, effectifs, adresses anonymisées, saturation du parking, flotte, remboursements transport, demandes sociales...",
     checks: ["Données existantes repérées", "Sources internes identifiées"],
     resources: [
       { label: "ADEME — Mettre en place un PDME", url: "https://employeursprocovoiturage.ademe.fr/centre-de-ressources-mobilite-durable-employeur/mettre-en-place-un-plan-de-mobilite-employeur/" }
@@ -559,7 +559,7 @@ const SECTIONS = [
     num: 10,
     title: "Prévoir des premières actions rapides",
     sub: "2 ou 3 actions concrètes repérées",
-    desc: "Le PDME doit produire des résultats visibles rapidement. Enquête salariés, groupe covoiturage, meilleure information transport, test FMD, Mai à Vélo, amélioration stationnement vélo…",
+    desc: "Pour être visible et vivant, les premières actions (même simples) doivent être mises en place rapidement. Boîte à outils, groupe covoiturage, défi Mai à Vélo, mise en place d'outils de réparation vélo, organisation d'un temps convivial, prise de parole…",
     checks: ["2 ou 3 actions simples repérées"],
     resources: [
       { label: "ADEME — Mai à Vélo 2026", url: "https://accelerateur-transition-ecologique-ademe.notion.site/1er-au-31-mai-2026-Mai-v-lo-2aa6523d57d780a19e25f3ddd0d1d385" },
