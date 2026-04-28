@@ -1,0 +1,681 @@
+
+<style>
+  :root {
+    --anap-blue: #003189;
+    --anap-blue-light: #e8edf8;
+    --anap-blue-mid: #5a7bc5;
+    --anap-green: #00853f;
+    --anap-green-light: #e6f4ec;
+    --anap-orange: #e85a00;
+    --anap-orange-light: #fdf0e8;
+    --anap-gray: #f5f5f3;
+    --anap-gray-border: #d8d6cc;
+    --anap-text: #1a1a2e;
+    --anap-muted: #5a5a6a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .pdme-wrap {
+    font-family: 'Trebuchet MS', 'Calibri', sans-serif;
+    color: var(--anap-text);
+    padding: 0 0 2rem;
+  }
+
+  .pdme-header {
+    background: var(--anap-blue);
+    padding: 1.5rem 1.75rem 1.25rem;
+    border-radius: var(--border-radius-lg, 12px) var(--border-radius-lg, 12px) 0 0;
+    margin-bottom: 0;
+  }
+
+  .pdme-header-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.5rem;
+  }
+
+  .anap-badge {
+    background: white;
+    color: var(--anap-blue);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+
+  .pdme-header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.25;
+    margin-bottom: 0.35rem;
+  }
+
+  .pdme-header p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.5;
+  }
+
+  .progress-bar-wrap {
+    background: var(--anap-gray);
+    border-left: 3px solid var(--anap-blue);
+    border-right: 3px solid var(--anap-blue);
+    padding: 0.9rem 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .progress-label {
+    font-size: 13px;
+    color: var(--anap-muted);
+    white-space: nowrap;
+    min-width: 90px;
+  }
+
+  .progress-bar {
+    flex: 1;
+    height: 8px;
+    background: var(--anap-gray-border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--anap-blue);
+    border-radius: 4px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  .progress-count {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--anap-blue);
+    min-width: 40px;
+    text-align: right;
+  }
+
+  .sections-list {
+    border-left: 3px solid var(--anap-blue);
+    border-right: 3px solid var(--anap-blue);
+  }
+
+  .section-item {
+    border-bottom: 1px solid var(--anap-gray-border);
+    transition: background 0.2s;
+  }
+
+  .section-item.completed {
+    background: var(--anap-green-light);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 1rem 1.75rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .section-num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--anap-blue-light);
+    color: var(--anap-blue);
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .section-item.completed .section-num {
+    background: var(--anap-green);
+    color: white;
+  }
+
+  .section-title-wrap {
+    flex: 1;
+  }
+
+  .section-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--anap-text);
+    line-height: 1.3;
+  }
+
+  .section-item.completed .section-title {
+    color: var(--anap-green);
+  }
+
+  .section-sub {
+    font-size: 12px;
+    color: var(--anap-muted);
+    margin-top: 2px;
+  }
+
+  .section-toggle {
+    flex-shrink: 0;
+    font-size: 13px;
+    color: var(--anap-blue-mid);
+    margin-top: 4px;
+    transition: transform 0.2s;
+  }
+
+  .section-toggle.open {
+    transform: rotate(180deg);
+  }
+
+  .section-body {
+    display: none;
+    padding: 0 1.75rem 1.25rem 4rem;
+  }
+
+  .section-body.open {
+    display: block;
+  }
+
+  .section-desc {
+    font-size: 13px;
+    color: var(--anap-muted);
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px dashed var(--anap-gray-border);
+  }
+
+  .checks-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 0.9rem;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: white;
+    border: 1px solid var(--anap-gray-border);
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  .check-item:hover {
+    border-color: var(--anap-blue-mid);
+  }
+
+  .check-item.checked {
+    background: var(--anap-green-light);
+    border-color: var(--anap-green);
+  }
+
+  .check-box {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--anap-gray-border);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .check-item.checked .check-box {
+    background: var(--anap-green);
+    border-color: var(--anap-green);
+  }
+
+  .check-tick {
+    display: none;
+    width: 10px;
+    height: 7px;
+  }
+
+  .check-item.checked .check-tick {
+    display: block;
+  }
+
+  .check-label {
+    font-size: 13px;
+    color: var(--anap-text);
+    line-height: 1.4;
+  }
+
+  .check-item.checked .check-label {
+    color: var(--anap-green);
+  }
+
+  .resources-block {
+    margin-top: 0.85rem;
+    padding: 0.75rem 1rem;
+    background: var(--anap-blue-light);
+    border-left: 3px solid var(--anap-blue);
+    border-radius: 0 6px 6px 0;
+  }
+
+  .resources-block.hidden {
+    display: none;
+  }
+
+  .res-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--anap-blue);
+    margin-bottom: 6px;
+  }
+
+  .res-link {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 12.5px;
+    color: var(--anap-blue);
+    text-decoration: none;
+    line-height: 1.4;
+    padding: 3px 0;
+  }
+
+  .res-link:hover {
+    text-decoration: underline;
+  }
+
+  .res-dot {
+    flex-shrink: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--anap-blue);
+    margin-top: 6px;
+  }
+
+  .section-all-done {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--anap-green);
+    padding: 5px 8px;
+    background: var(--anap-green-light);
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-all-done.show {
+    display: flex;
+  }
+
+  .footer-panel {
+    background: var(--anap-gray);
+    border: 3px solid var(--anap-blue);
+    border-top: none;
+    border-radius: 0 0 var(--border-radius-lg, 12px) var(--border-radius-lg, 12px);
+    padding: 1.25rem 1.75rem;
+  }
+
+  .footer-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--anap-blue);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-resources {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 8px;
+  }
+
+  .footer-res-card {
+    background: white;
+    border: 1px solid var(--anap-gray-border);
+    border-radius: 8px;
+    padding: 0.7rem 0.85rem;
+    text-decoration: none;
+    display: block;
+    transition: border-color 0.15s;
+  }
+
+  .footer-res-card:hover {
+    border-color: var(--anap-blue);
+  }
+
+  .frc-org {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--anap-blue-mid);
+    margin-bottom: 3px;
+  }
+
+  .frc-title {
+    font-size: 12.5px;
+    color: var(--anap-text);
+    line-height: 1.35;
+  }
+
+  .reset-btn {
+    margin-top: 1rem;
+    padding: 7px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    background: transparent;
+    border: 1.5px solid var(--anap-blue);
+    border-radius: 6px;
+    color: var(--anap-blue);
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.15s;
+  }
+
+  .reset-btn:hover {
+    background: var(--anap-blue-light);
+  }
+
+  .congrats-banner {
+    display: none;
+    padding: 0.85rem 1.75rem;
+    background: var(--anap-green);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    border-left: 3px solid var(--anap-blue);
+    border-right: 3px solid var(--anap-blue);
+  }
+
+  .congrats-banner.show {
+    display: block;
+  }
+</style>
+
+<div class="pdme-wrap">
+  <div class="pdme-header">
+    <div class="pdme-header-top">
+      <span class="anap-badge">ANAP</span>
+      <span style="font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:0.05em;">Plan de mobilité employeur</span>
+    </div>
+    <h1>10 points pour bien démarrer votre PDME</h1>
+    <p>Cochez les éléments au fur et à mesure — les ressources clés s'affichent en fonction de votre avancement.</p>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <span class="progress-label">Avancement</span>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-count" id="progressCount">0 / 25</span>
+  </div>
+
+  <div class="sections-list" id="sectionsList"></div>
+
+  <div class="congrats-banner" id="congratsBanner">
+    Toutes les cases sont cochées — vous êtes prêt à lancer votre plan de mobilité !
+  </div>
+
+  <div class="footer-panel">
+    <div class="footer-title">Ressources générales</div>
+    <div class="footer-resources">
+      <a href="https://employeursprocovoiturage.ademe.fr/centre-de-ressources-mobilite-durable-employeur/mettre-en-place-un-plan-de-mobilite-employeur/" class="footer-res-card" target="_blank">
+        <div class="frc-org">ADEME</div>
+        <div class="frc-title">Mettre en place un PDME</div>
+      </a>
+      <a href="https://starter-pack.declic-mobilites.org/" class="footer-res-card" target="_blank">
+        <div class="frc-org">Déclic Mobilités</div>
+        <div class="frc-title">Starter Pack mobilité</div>
+      </a>
+      <a href="https://2raventure.com/plan-de-mobilite/" class="footer-res-card" target="_blank">
+        <div class="frc-org">2R Aventure</div>
+        <div class="frc-title">Plan de mobilité — ressources</div>
+      </a>
+      <a href="https://accelerateur-transition-ecologique-ademe.notion.site/1er-au-31-mai-2026-Mai-v-lo-2aa6523d57d780a19e25f3ddd0d1d385" class="footer-res-card" target="_blank">
+        <div class="frc-org">ADEME</div>
+        <div class="frc-title">Mai à Vélo 2026</div>
+      </a>
+    </div>
+    <button class="reset-btn" onclick="resetAll()">Réinitialiser</button>
+  </div>
+</div>
+
+<script>
+const SECTIONS = [
+  {
+    num: 1,
+    title: "Nommer un référent mobilité",
+    sub: "Pilote identifié, temps prévu, mission clarifiée",
+    desc: "Une personne identifiée doit coordonner la démarche, suivre les actions et faire le lien entre les services. Il ne s'agit pas d'un temps plein, mais d'un pilote reconnu.",
+    checks: ["Référent identifié", "Temps minimum prévu", "Mission clarifiée"],
+    resources: [
+      { label: "ANAP — Fiche de poste du référent mobilité", url: "https://anap.fr/s/" },
+      { label: "ANAP — Pourquoi se lancer dans un plan de mobilité", url: "https://anap.fr/s/" }
+    ]
+  },
+  {
+    num: 2,
+    title: "Avoir un accord clair de la direction",
+    sub: "Direction informée, objectif validé",
+    desc: "La démarche doit être soutenue par la direction. Sans portage clair, le sujet reste secondaire.",
+    checks: ["Direction informée et engagée", "Objectif général validé"],
+    resources: [
+      { label: "ANAP — Pourquoi se lancer dans un plan de mobilité", url: "https://anap.fr/s/" },
+      { label: "ADEME — Mettre en place un PDME", url: "https://employeursprocovoiturage.ademe.fr/centre-de-ressources-mobilite-durable-employeur/mettre-en-place-un-plan-de-mobilite-employeur/" }
+    ]
+  },
+  {
+    num: 3,
+    title: "Définir le bon périmètre",
+    sub: "Sites, salariés ciblés, priorités",
+    desc: "Le PDME peut concerner un site, plusieurs établissements, un groupement ou une organisation multi-sites. Mieux vaut commencer avec un périmètre réaliste.",
+    checks: ["Site(s) concerné(s) défini(s)", "Salariés ciblés identifiés", "Priorités connues"],
+    resources: [
+      { label: "Déclic Mobilités — Starter Pack", url: "https://starter-pack.declic-mobilites.org/" }
+    ]
+  },
+  {
+    num: 4,
+    title: "Clarifier les enjeux principaux",
+    sub: "2 ou 3 enjeux prioritaires posés",
+    desc: "Recrutement, parking saturé, difficultés horaires, absentéisme, image employeur, transition écologique, obligations réglementaires… Pourquoi lancer la démarche maintenant ?",
+    checks: ["Les 2 ou 3 enjeux prioritaires sont posés"],
+    resources: [
+      { label: "ANAP — Pourquoi se lancer dans un plan de mobilité", url: "https://anap.fr/s/" },
+      { label: "2R Aventure — Plan de mobilité", url: "https://2raventure.com/plan-de-mobilite/" }
+    ]
+  },
+  {
+    num: 5,
+    title: "Identifier les bons interlocuteurs internes",
+    sub: "Liste des acteurs, premier échange planifié",
+    desc: "La mobilité concerne rarement un seul service. RH, services techniques, logistique, communication, représentants du personnel, managers : chacun détient une partie de la solution.",
+    checks: ["Liste des interlocuteurs internes prête", "Premier échange planifié"],
+    resources: [
+      { label: "Déclic Mobilités — Starter Pack", url: "https://starter-pack.declic-mobilites.org/" }
+    ]
+  },
+  {
+    num: 6,
+    title: "Prendre contact avec l'AOM ou la collectivité",
+    sub: "AOM identifiée, contact réalisé, dispositifs recensés",
+    desc: "L'AOM peut proposer : accompagnement méthodologique, diagnostic, plateforme covoiturage, données transport, services vélo, appels à projets. Cet appui est parfois gratuit ou cofinancé.",
+    checks: ["AOM identifiée", "Premier contact réalisé", "Dispositifs locaux recensés"],
+    resources: [
+      { label: "Outil mobilité MEL — 2R Aventure", url: "https://2raventure.github.io/mobilite-mel/mobilite-mel.html" },
+      { label: "Annuaire AOM national — 1km à pied", url: "https://annuaireaom.softr.app/" },
+      { label: "Open data AOM — CEREMA / data.gouv", url: "https://www.data.gouv.fr/datasets/liste-et-composition-des-autorites-organisatrices-de-la-mobilite-aom" }
+    ]
+  },
+  {
+    num: 7,
+    title: "Regarder autour de soi",
+    sub: "Voisins repérés, mutualisations identifiées",
+    desc: "Autres établissements de santé, EHPAD, entreprises, mairie, zone d'activité, établissements scolaires : une démarche commune peut être plus efficace.",
+    checks: ["Voisins stratégiques repérés", "Opportunités de mutualisation identifiées"],
+    resources: [
+      { label: "Déclic Mobilités — Starter Pack", url: "https://starter-pack.declic-mobilites.org/" }
+    ]
+  },
+  {
+    num: 8,
+    title: "Rassembler les données déjà disponibles",
+    sub: "Données existantes repérées, sources internes identifiées",
+    desc: "Avant toute enquête, l'établissement possède souvent des informations utiles : horaires, effectifs, adresses anonymisées, tension parking, flotte, remboursements transport.",
+    checks: ["Données existantes repérées", "Sources internes identifiées"],
+    resources: [
+      { label: "ADEME — Mettre en place un PDME", url: "https://employeursprocovoiturage.ademe.fr/centre-de-ressources-mobilite-durable-employeur/mettre-en-place-un-plan-de-mobilite-employeur/" }
+    ]
+  },
+  {
+    num: 9,
+    title: "Préparer une communication simple",
+    sub: "Message de lancement prêt, canal identifié",
+    desc: "Les équipes adhèrent si elles comprennent l'intérêt concret : temps de trajet, pouvoir d'achat, confort, solutions pratiques.",
+    checks: ["Message de lancement prêt", "Canal de diffusion identifié"],
+    resources: [
+      { label: "2R Aventure — Plan de mobilité", url: "https://2raventure.com/plan-de-mobilite/" }
+    ]
+  },
+  {
+    num: 10,
+    title: "Prévoir des premières actions rapides",
+    sub: "2 ou 3 actions concrètes repérées",
+    desc: "Le PDME doit produire des résultats visibles rapidement. Enquête salariés, groupe covoiturage, meilleure information transport, test FMD, Mai à Vélo, amélioration stationnement vélo…",
+    checks: ["2 ou 3 actions simples repérées"],
+    resources: [
+      { label: "ADEME — Mai à Vélo 2026", url: "https://accelerateur-transition-ecologique-ademe.notion.site/1er-au-31-mai-2026-Mai-v-lo-2aa6523d57d780a19e25f3ddd0d1d385" },
+      { label: "ADEME — Employeurs pro-covoiturage", url: "https://employeursprocovoiturage.ademe.fr/centre-de-ressources-mobilite-durable-employeur/mettre-en-place-un-plan-de-mobilite-employeur/" },
+      { label: "Déclic Mobilités — Starter Pack", url: "https://starter-pack.declic-mobilites.org/" }
+    ]
+  }
+];
+
+const TOTAL_CHECKS = SECTIONS.reduce((s, sec) => s + sec.checks.length, 0);
+let state = {};
+
+SECTIONS.forEach((sec, si) => {
+  sec.checks.forEach((_, ci) => { state[`${si}-${ci}`] = false; });
+});
+
+function countChecked() {
+  return Object.values(state).filter(Boolean).length;
+}
+
+function isSectionDone(si) {
+  return SECTIONS[si].checks.every((_, ci) => state[`${si}-${ci}`]);
+}
+
+function updateProgress() {
+  const n = countChecked();
+  document.getElementById('progressFill').style.width = (n / TOTAL_CHECKS * 100) + '%';
+  document.getElementById('progressCount').textContent = n + ' / ' + TOTAL_CHECKS;
+  document.getElementById('congratsBanner').classList.toggle('show', n === TOTAL_CHECKS);
+}
+
+function toggleSection(si) {
+  const body = document.getElementById('body-' + si);
+  const arrow = document.getElementById('arrow-' + si);
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  arrow.classList.toggle('open', !isOpen);
+}
+
+function toggleCheck(si, ci) {
+  const key = `${si}-${ci}`;
+  state[key] = !state[key];
+  const el = document.getElementById(`check-${si}-${ci}`);
+  el.classList.toggle('checked', state[key]);
+  const sectionEl = document.getElementById('section-' + si);
+  const done = isSectionDone(si);
+  sectionEl.classList.toggle('completed', done);
+  document.getElementById('allDone-' + si).classList.toggle('show', done);
+  const resBlock = document.getElementById('res-' + si);
+  const checked = SECTIONS[si].checks.some((_, ci2) => state[`${si}-${ci2}`]);
+  resBlock.classList.toggle('hidden', !checked);
+  updateProgress();
+}
+
+function resetAll() {
+  Object.keys(state).forEach(k => { state[k] = false; });
+  SECTIONS.forEach((sec, si) => {
+    sec.checks.forEach((_, ci) => {
+      document.getElementById(`check-${si}-${ci}`).classList.remove('checked');
+    });
+    document.getElementById('section-' + si).classList.remove('completed');
+    document.getElementById('allDone-' + si).classList.remove('show');
+    document.getElementById('res-' + si).classList.add('hidden');
+  });
+  updateProgress();
+}
+
+function buildUI() {
+  const list = document.getElementById('sectionsList');
+  list.innerHTML = '';
+  SECTIONS.forEach((sec, si) => {
+    const item = document.createElement('div');
+    item.className = 'section-item';
+    item.id = 'section-' + si;
+
+    const checksHTML = sec.checks.map((c, ci) => `
+      <div class="check-item" id="check-${si}-${ci}" onclick="toggleCheck(${si},${ci})">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 7" fill="none">
+            <path d="M1 3.5L3.5 6L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="check-label">${c}</span>
+      </div>
+    `).join('');
+
+    const resHTML = sec.resources.map(r => `
+      <a href="${r.url}" class="res-link" target="_blank"><span class="res-dot"></span>${r.label}</a>
+    `).join('');
+
+    item.innerHTML = `
+      <div class="section-header" onclick="toggleSection(${si})">
+        <div class="section-num">${sec.num}</div>
+        <div class="section-title-wrap">
+          <div class="section-title">${sec.title}</div>
+          <div class="section-sub">${sec.sub}</div>
+        </div>
+        <div class="section-toggle" id="arrow-${si}">▾</div>
+      </div>
+      <div class="section-body" id="body-${si}">
+        <p class="section-desc">${sec.desc}</p>
+        <div class="checks-grid">${checksHTML}</div>
+        <div class="section-all-done" id="allDone-${si}">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#00853f"/><path d="M3.5 7L5.8 9.5L10.5 4.5" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Étape complétée
+        </div>
+        <div class="resources-block hidden" id="res-${si}">
+          <div class="res-label">Ressources utiles</div>
+          ${resHTML}
+        </div>
+      </div>
+    `;
+    list.appendChild(item);
+  });
+}
+
+buildUI();
+updateProgress();
+</script>
